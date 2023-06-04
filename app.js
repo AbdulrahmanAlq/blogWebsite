@@ -16,13 +16,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 
-
+let posts = [];
 
 
 
 app.get("/", function (req, res) {
+  
   res.render("home", {
     homeContent: homeStartingContent,
+    posts : posts,
   });
 })
 
@@ -52,7 +54,9 @@ app.post("/compose", function (req, res) {
     titleText: req.body.titleText,
     postText: req.body.postText
   }
-  console.log(userText);
+
+  posts.push(post);
+  res.redirect("/");
 })
 
 app.listen(3000, function () {
