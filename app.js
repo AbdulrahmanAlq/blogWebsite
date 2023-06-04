@@ -12,7 +12,7 @@ const app = express();
 
 app.set('view engine', 'ejs');
 
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 
@@ -20,27 +20,41 @@ app.use(express.static("public"));
 
 
 
-app.get("/",function(req , res){
-  res.render("home",{
-    homeContent:homeStartingContent,
-  });
-})  
-
-
-app.get("/about",function(req , res){
-  res.render("about",{
-    aboutContent:aboutContent,
+app.get("/", function (req, res) {
+  res.render("home", {
+    homeContent: homeStartingContent,
   });
 })
 
-app.get("/Contact",function(req , res){
-  res.render("contact",{
-    contactContent:contactContent,
+app.get("/home", function (req, res) {
+  res.redirect("/");
+})
+
+app.get("/about", function (req, res) {
+  res.render("about", {
+    aboutContent: aboutContent,
   });
 })
 
+app.get("/Contact", function (req, res) {
+  res.render("contact", {
+    contactContent: contactContent,
+  });
+})
 
+app.get("/Compose", function (req, res) {
+  res.render("compose");
+})
 
-app.listen(3000, function() {
+app.post("/compose", function (req, res) {
+
+  let post = {
+    titleText: req.body.titleText,
+    postText: req.body.postText
+  }
+  console.log(userText);
+})
+
+app.listen(3000, function () {
   console.log("Server started on port 3000");
 });
