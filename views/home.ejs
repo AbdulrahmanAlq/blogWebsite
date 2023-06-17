@@ -10,11 +10,11 @@
 
     <% posts.forEach(function(post){ %>
         <h1>
-            <%= post.titleText %>
+            <%= post.title %>
         </h1>
         <p>
-            <%= post.postText.substring(0,100)+"..." %>
-                <a href="/posts/<%= post.titleText %>"> Read more</a>
+            <%= post.content.substring(0,100)+"..." %>
+                <a href="/posts/<%= post._id %>"> Read more</a>
         </p>
 
         <% }); %>
